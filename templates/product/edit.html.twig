@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>editer une categorie</title>
+</head>
+<body>
+    <h1>editer une categorie</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+         <button type="submit">Edit category</button> 
+    {{ form_end(form) }}
+
+    <a href="{{ path('category_list') }}">Retour à la liste des categories</a>
+</body>
+</html>

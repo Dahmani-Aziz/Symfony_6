@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>liste de categories</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .search-form, .delete-form {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Liste des categories</h1>
+
+{% if categories is not empty %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>OPS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cat in categories %}
+                <tr>
+                    <td><a href="{{ path('list_product_Cat', { 'id': cat.id }) }}">{{ cat.name }}</a></td>
+                    <td>
+                        <a href="{{ path('edit_cat', { 'id': cat.id}) }}">Modifier</a> | 
+                        <a href="{{ path('delete_cat', { 'id':cat.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table> 
+{% else %}
+    <p>Aucune categorie</p>
+{% endif %}
+
+ <a href="{{ path('add_category') }}">Add a new category</a>
+
+</body>
+</html>
